@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE logback>
+<configuration>
+    <appender name="STDOUT" class="ch.qos.logback.FileAppender">
+        <file>application.log</file>
+        <encoder>
+            <charset>UTF-8</charset>
+            <pattern>%msg%n</pattern>
+        </encoder>
+    </appender>
+    
+    <logger name="simpleLogger" />
+    
+    <root>
+        <appender-ref ref="FILE"/>
+    </root>
+</configuration>
