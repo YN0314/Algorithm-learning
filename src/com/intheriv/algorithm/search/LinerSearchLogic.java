@@ -1,9 +1,8 @@
 package com.intheriv.algorithm.search;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
+import com.intheriv.algorithm.util.IntArrayGenerator;
 import com.intheriv.algorithm.util.ProcessingTimer;
 
 public class LinerSearchLogic {
@@ -20,15 +19,15 @@ public class LinerSearchLogic {
         
         // ターゲット
         int target = 1001;
-        // タイマーインスタンス生成
+        // タイマーインスタンス生成、整数配列インスタンス生成
         ProcessingTimer timer = new ProcessingTimer();
-        
+        IntArrayGenerator generator = new IntArrayGenerator();
         // 整数配列の生成
         timer.setStartTime();
-        List<Integer> intArray = generateIntArray(100000, 100000);
+        List<Integer> intArray = generator.generateIntArray(100000, 100000);
         System.out.println(timer.startTimeMessage() + ", " + timer.endTimeMessage() + ", " + timer.procTimeMessage());
         
-        //printIntArray(intArray);
+        //generator.printIntArray(intArray);
         
         int arraySize = intArray.size() -1;
         
@@ -119,35 +118,5 @@ public class LinerSearchLogic {
         result = (i - 1) == n ? errorCode : i;
         System.out.println("探索失敗判定回数：" + errorJudgeTrialCount + ", 探索成功判定回数：" + successJudgeTrialCount);
         return result;
-    }
-    
-    /**
-     * 整数配列の生成
-     * リストサイズと数値最大値を指定
-     * @param int size
-     * @param int max
-     * @return List<Integer> list
-     */
-    static List<Integer> generateIntArray(int size, int max) {
-        List<Integer> list = new ArrayList<Integer>();
-        Random rand = new Random();
-        
-        for (int i = 0; i < size - 1; i++) {
-            int element = rand.nextInt(max);
-            if (!list.contains(element)) {
-                list.add(element);
-            }
-        }
-        System.out.println("サイズ： " + size + ",最大値： " + max + "の整数配列を生成。");
-        return list;
-    }
-    
-    static void printIntArray(List<Integer> list) {
-        StringBuilder str = new StringBuilder();
-        System.out.print("配列は、[");
-        for (int i : list) {
-            str.append(i).append(" ");
-        }
-        System.out.println(str + "]");
     }
 }
