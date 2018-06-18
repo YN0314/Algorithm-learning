@@ -1,7 +1,9 @@
 package com.intheriv.algorithm.search;
 
+import java.util.Collections;
 import java.util.List;
 
+import com.intheriv.algorithm.util.CommonUtils;
 import com.intheriv.algorithm.util.IntArrayGenerator;
 import com.intheriv.algorithm.util.ProcessingTimer;
 
@@ -18,23 +20,25 @@ public class LinerSearchLogic {
     public static void main(String[] args) throws Exception {
         
         // ターゲット
-        int target = 1001;
+        int target = 899;
         // タイマーインスタンス生成、整数配列インスタンス生成
         ProcessingTimer timer = new ProcessingTimer();
         IntArrayGenerator generator = new IntArrayGenerator();
+        CommonUtils utils = new CommonUtils();
         // 整数配列の生成
         timer.setStartTime();
-        List<Integer> intArray = generator.generateIntArray(100000, 100000);
+        List<Integer> intArray = generator.generateIntArray(10000, 10000);
         System.out.println(timer.startTimeMessage() + ", " + timer.endTimeMessage() + ", " + timer.procTimeMessage());
         
         //generator.printIntArray(intArray);
         
-        int arraySize = intArray.size() -1;
+        int arraySize = intArray.size() - 1;
+        Collections.sort(intArray);
         
         System.out.println("----- 「単純」線形探索開始 -----");
         timer.setStartTime();
         int simpleLinerSearchResult = simpleLinerSearch(intArray, arraySize, target);
-        searchJudge(simpleLinerSearchResult, target);
+        utils.outputJudgeMessage(simpleLinerSearchResult, target, errorCode);
         System.out.println("----- 探索終了 -----");
         System.out.println(timer.startTimeMessage() + ", " + timer.endTimeMessage() + ", " + timer.procTimeMessage());
         
@@ -43,20 +47,13 @@ public class LinerSearchLogic {
         System.out.println("----- 「番兵」線形探索開始 -----");
         timer.setStartTime();
         int sentinelLinerSearchResult = sentinelLinerSeach(intArray, arraySize, target);
-        searchJudge(sentinelLinerSearchResult, target);
+        utils.outputJudgeMessage(sentinelLinerSearchResult, target, errorCode);
         System.out.println("----- 探索終了 -----");
         System.out.println(timer.startTimeMessage() + ", " + timer.endTimeMessage() + ", " + timer.procTimeMessage());
         
     }
 
     
-    static void searchJudge(int result, int target) {
-        if (result == errorCode) {
-            System.out.println("【探索失敗】ターゲット: " + target + "は、見つかりませんでした。");
-        } else {
-            System.out.println("【探索成功】ターゲット: " + target + ", 配置位置： " + (result + 1));
-        }
-    }
     
     /**
      * 単純な線形探索を行う。
