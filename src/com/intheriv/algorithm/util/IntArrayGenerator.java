@@ -1,6 +1,7 @@
 package com.intheriv.algorithm.util;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
@@ -16,13 +17,20 @@ public class IntArrayGenerator {
         List<Integer> list = new ArrayList<Integer>();
         Random rand = new Random();
         
-        for (int i = 0; i < size - 1; i++) {
+        if (size > max) {
+            size = max; // 配列最大値が、値最大値を上回っている場合は、値最大値以上詰められないようにする
+        }
+        
+        while (true) {
             int element = rand.nextInt(max);
             if (!list.contains(element)) {
                 list.add(element);
             }
+            if (list.size() == size) {
+                break;
+            }
         }
-        System.out.println("サイズ： " + size + ",最大値： " + max + "の整数配列を生成。");
+        System.out.println("サイズ： " + list.size() + ",最大値： " + Collections.max(list) + "の整数配列を生成。");
         return list;
     }
     
