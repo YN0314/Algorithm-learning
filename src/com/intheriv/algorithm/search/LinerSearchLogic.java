@@ -20,7 +20,7 @@ public class LinerSearchLogic {
     public static void main(String[] args) throws Exception {
         
         // ターゲット
-        int target = 899;
+        int target = 100001;
         // タイマーインスタンス生成、整数配列インスタンス生成
         ProcessingTimer timer = new ProcessingTimer();
         IntArrayGenerator generator = new IntArrayGenerator();

@@ -12,7 +12,7 @@ public class BinarySearchLogic {
     static final int errorCode = -1;
     
     public static void main(String[] args) {
-        int target = 899;
+        int target = 100001;
         
         ProcessingTimer timer = new ProcessingTimer();
         IntArrayGenerator generator = new IntArrayGenerator();
