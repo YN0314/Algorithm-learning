@@ -36,7 +36,7 @@ public class IntStack {
      * @return int
      * @throws Exception
      */
-    public int push(int x) throws Exception {
+    public int push(int x) throws OverFlowIntStackException {
         // スタックがフルキャパの場合、Exception スロー
         if (pointer >= maximum) {
             throw new OverFlowIntStackException();
@@ -51,7 +51,7 @@ public class IntStack {
      * @return int
      * @throws Exception
      */
-    public int pop() throws Exception {
+    public int pop() throws EmptyIntStackException {
         if (pointer <= EMPTY) {
             throw new EmptyIntStackException();
         } else {
@@ -65,7 +65,7 @@ public class IntStack {
      * @return
      * @throws Exception
      */
-    public int peek() throws Exception {
+    public int peek() throws EmptyIntStackException {
        if (pointer <= EMPTY) {
            throw new EmptyIntStackException();
        } else {
